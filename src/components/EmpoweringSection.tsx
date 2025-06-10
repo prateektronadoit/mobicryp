@@ -2,90 +2,91 @@ import { useEffect, useRef, useState } from 'react'
 
 const EmpoweringSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [scrolledPast, setScrolledPast] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        setScrolledPast(!entry.isIntersecting)
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
       },
       { threshold: 0.1 }
     )
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
     }
+
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current)
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
     }
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16 relative overflow-hidden bg-black">
-      {/* Bold diagonal strip with photocromatic glassy animated overlay, moving up and down and bending */}
-      <div className="absolute left-1/2 top-1/2 w-[140vw] h-20 z-0 animate-stripupdownbend" style={{ willChange: 'transform' }}>
-        {/* Main strip */}
-        <div className="w-full h-full relative">
-          <div className="absolute inset-0 bg-red-600 rounded-lg shadow-2xl border-t-4 border-b-4 border-white" />
-          <div className="absolute inset-x-0 top-0 h-2 bg-white" />
-          <div className="absolute inset-x-0 bottom-0 h-2 bg-blue-600" />
-          {/* Photocromatic glassy animated overlay */}
-          <div className="absolute inset-0 pointer-events-none animate-glassstripes"
-            style={{
-              background: `
-                repeating-linear-gradient(120deg, rgba(37,99,235,0.10) 0 2px, transparent 2px 40px),
-                repeating-linear-gradient(120deg, rgba(255,255,255,0.08) 0 8px, transparent 8px 48px),
-                linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(37,99,235,0.10) 100%),
-                linear-gradient(90deg, rgba(255,255,255,0.10) 0%, rgba(37,99,235,0.10) 100%)
-              `,
-              filter: 'blur(2px) brightness(1.2)',
-              opacity: 0.85,
-              borderRadius: '12px',
-            }}
-          />
-          {/* Soft glow overlay */}
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse at 60% 40%, rgba(37,99,235,0.18) 0%, transparent 70%)',
-            opacity: 0.7,
-            filter: 'blur(8px)',
-            borderRadius: '12px',
-          }} />
-        </div>
+    <section 
+      ref={sectionRef}
+      className="py-12 flex items-center justify-center bg-black relative overflow-hidden"
+    >
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-red-900/20 transition-all duration-700"
+        style={{
+          opacity: isHovered ? 1 : 0.5,
+          transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+          filter: isHovered ? 'blur(0px)' : 'blur(8px)'
+        }}
+      />
+      
+      <div 
+        className="relative z-10 text-center px-4 max-w-2xl mx-auto"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'all 0.8s ease-out'
+        }}
+      >
+        <h1 
+          className="text-4xl md:text-5xl font-bold text-white mb-4 transition-all duration-500"
+          style={{
+            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+            textShadow: isHovered ? '0 0 20px rgba(59, 130, 246, 0.5)' : 'none'
+          }}
+        >
+          Empowering Crypto
+        </h1>
+        
+        <p 
+          className="text-lg md:text-xl text-gray-300 mb-6 transition-all duration-500"
+          style={{
+            transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
+            opacity: isHovered ? 1 : 0.8
+          }}
+        >
+          Mint Smarter. Mint Faster.
+        </p>
+
+        <a
+          href="/Mobicryp.pdf"
+          download
+          className="inline-block px-6 py-3 bg-blue-600 text-white rounded-full text-base font-semibold transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50"
+        >
+          Download Business Plan
+        </a>
       </div>
-      <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
-        {!scrolledPast ? (
-          <>
-            <h1 className="block text-2xl font-semibold uppercase tracking-wide text-white-500 mb-2">EMPOWERING</h1>
-            <h2 className="block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl text-white mb-2">CRYPTO</h2>
-            <h3 className="block text-3xl font-bold text-white-500 mb-6">MINTING</h3>
-          </>
-        ) : (
-          <h2 className="block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl text-white mb-6 transition-all duration-500">Mint Smarter. Mint Faster.</h2>
-        )}
-        <a href="/Mobicryp.pdf" download className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-blue-700 transition">Download Business Plan</a>
-      </div>
-      <style>{`
-        @keyframes glassstripes {
-          0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-          100% { background-position: 0% 40px, 0% 48px, 0% 100px, 0% 80px; }
-        }
-        .animate-glassstripes {
-          animation: glassstripes 8s ease-in-out infinite alternate;
-        }
-        @keyframes stripupdownbend {
-          0% {
-            transform: translate(-50%, -60%) rotate(-16deg) skewY(-4deg);
-          }
-          50% {
-            transform: translate(-50%, -50%) rotate(-12deg) skewY(0deg);
-          }
-          100% {
-            transform: translate(-50%, -40%) rotate(-8deg) skewY(4deg);
-          }
-        }
-        .animate-stripupdownbend {
-          animation: stripupdownbend 6s ease-in-out infinite alternate;
-        }
-      `}</style>
+
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+          opacity: isHovered ? 0.8 : 0.3,
+          transition: 'opacity 0.5s ease'
+        }}
+      />
     </section>
   )
 }
