@@ -47,7 +47,6 @@ const Features = () => {
   const [startIdx, setStartIdx] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(getItemsPerView())
   const [isVisible, setIsVisible] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   // Update itemsPerView on resize
@@ -70,16 +69,6 @@ const Features = () => {
       if (sectionRef.current) observer.unobserve(sectionRef.current)
     }
   }, [])
-
-  // Auto-move carousel
-  useEffect(() => {
-    if (!isHovered) {
-      const interval = setInterval(() => {
-        setStartIdx((idx) => (idx + itemsPerView) % features.length)
-      }, 4000)
-      return () => clearInterval(interval)
-    }
-  }, [itemsPerView, isHovered])
 
   // Looping carousel logic for visible features
   const visibleFeatures = []
@@ -109,8 +98,6 @@ const Features = () => {
     <div
       ref={sectionRef}
       className={`py-12 bg-black transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex flex-col items-center">
