@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1F2937"/>
+  <rect x="50" y="50" width="700" height="300" fill="#111827" rx="8"/>
+  <path d="M50 50L750 50L750 350L50 350Z" stroke="#4B5563" stroke-width="2"/>
+  <path d="M50 100L750 100" stroke="#4B5563" stroke-width="1"/>
+  <path d="M50 150L750 150" stroke="#4B5563" stroke-width="1"/>
+  <path d="M50 200L750 200" stroke="#4B5563" stroke-width="1"/>
+  <path d="M50 250L750 250" stroke="#4B5563" stroke-width="1"/>
+  <path d="M50 300L750 300" stroke="#4B5563" stroke-width="1"/>
+  <path d="M100 50L100 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M200 50L200 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M300 50L300 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M400 50L400 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M500 50L500 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M600 50L600 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M700 50L700 350" stroke="#4B5563" stroke-width="1"/>
+  <path d="M100 200L200 150L300 250L400 100L500 300L600 200L700 250" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="100" cy="200" r="4" fill="#2563EB"/>
+  <circle cx="200" cy="150" r="4" fill="#2563EB"/>
+  <circle cx="300" cy="250" r="4" fill="#2563EB"/>
+  <circle cx="400" cy="100" r="4" fill="#2563EB"/>
+  <circle cx="500" cy="300" r="4" fill="#2563EB"/>
+  <circle cx="600" cy="200" r="4" fill="#2563EB"/>
+  <circle cx="700" cy="250" r="4" fill="#2563EB"/>
+</svg> 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1F2937"/>
+  <rect x="50" y="50" width="700" height="500" fill="#111827" rx="8"/>
+  <rect x="70" y="80" width="660" height="40" fill="#374151" rx="4"/>
+  <rect x="70" y="140" width="660" height="380" fill="#1F2937" rx="4"/>
+  <path d="M70 140L730 140L730 520L70 520Z" stroke="#4B5563" stroke-width="2"/>
+  <path d="M70 200L730 200" stroke="#4B5563" stroke-width="1"/>
+  <path d="M70 260L730 260" stroke="#4B5563" stroke-width="1"/>
+  <path d="M70 320L730 320" stroke="#4B5563" stroke-width="1"/>
+  <path d="M70 380L730 380" stroke="#4B5563" stroke-width="1"/>
+  <path d="M70 440L730 440" stroke="#4B5563" stroke-width="1"/>
+  <path d="M70 500L730 500" stroke="#4B5563" stroke-width="1"/>
+</svg> 
